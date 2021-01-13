@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
+import 'oracle.dart';
 
 void main() {
   runApp(HomeScreen());
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String wisdom;
+  int ctr;
+
+  @override
+  void initState() {
+    super.initState();
+    ctr = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    var wisdom = "woof";
+
     return MaterialApp(
       theme: ThemeData.dark(),
       home: SafeArea(
@@ -44,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 20, bottom: 10),
                       child: Text(
-                        "test",
+                        wisdom,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 14.0,
@@ -54,7 +73,10 @@ class HomeScreen extends StatelessWidget {
                     ),
                     RaisedButton(
                       onPressed: () {
-                        print("clicked");
+                        setState(() {
+                          wisdom = getWisdom().toString();
+                          print("$wisdom");
+                        });
                       },
                       child: Text("pls click"),
                     ),
