@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String wisdom;
+  String wisdom = "woof";
   int ctr;
 
   @override
@@ -23,8 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    var wisdom = "woof";
 
     return MaterialApp(
       theme: ThemeData.dark(),
@@ -66,15 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         wisdom,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 14.0,
+                          fontSize: 10.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                     RaisedButton(
-                      onPressed: () {
-                        setState(() {
-                          wisdom = getWisdom().toString();
+                      onPressed: () async {
+                        var temp = await getWisdom();
+                        setState((){
+                          wisdom = temp.toString();
                           print("$wisdom");
                         });
                       },
