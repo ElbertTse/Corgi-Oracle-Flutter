@@ -6,7 +6,6 @@ void main() {
 }
 
 class HomeScreen extends StatefulWidget {
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -23,15 +22,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text("Corgi Oracle"),
-          ),
-          body: Column(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Corgi Oracle"),
+        ),
+        body: SafeArea( // Wrap the child of scaffold in safe area. works better for ios. did not know this
+          child: Column(
             children: [
               Expanded(
                 flex: 1,
@@ -72,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     RaisedButton(
                       onPressed: () async {
                         var temp = await getWisdom();
-                        setState((){
+                        setState(() {
                           wisdom = temp.toString();
                           print("$wisdom");
                         });
